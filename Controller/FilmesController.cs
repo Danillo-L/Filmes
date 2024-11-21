@@ -15,9 +15,9 @@ namespace Filmes.Controller
     {
         private static List<Filme> filmes = new List<Filme>()
         {
-            new Filme() { Id = 1, Nome = "Interestelar", AnoLancamento = 2014 , Bilheteria = 774_000_000, Duracao = new TimeSpan(2, 49, 0), Classificacao=Models.Enuns.ClassificacaoEnum.MaiorDez, Genero=Models.Enuns.GeneroEnum.FiccaoCientifica }
-
-
+            new Filme() { Id = 1, Nome = "Interestelar", AnoLancamento = 2014 , Bilheteria = 774_000_000, Duracao = new TimeSpan(2, 49, 0), Classificacao=Models.Enuns.ClassificacaoEnum.MaiorDez, Genero=Models.Enuns.GeneroEnum.FiccaoCientifica },
+            new Filme() { Id = 2, Nome = "Django Livre", AnoLancamento = 2013, Bilheteria = 426_074_373, Duracao = new TimeSpan(2, 45, 0), Classificacao=Models.Enuns.ClassificacaoEnum.MaiorDezesseis, Genero=Models.Enuns.GeneroEnum.Ação},
+            new Filme() { Id = 3, Nome = "La La Land", AnoLancamento = 2016, Bilheteria = 340_600_000, Duracao = new TimeSpan(2, 8, 0), Classificacao=Models.Enuns.ClassificacaoEnum.Livre, Genero=Models.Enuns.GeneroEnum.Ação}           
 
         };
 
@@ -34,7 +34,7 @@ namespace Filmes.Controller
         }
     
         [HttpPost]
-        public IActionResult AddFlime(Filme filme)
+        public IActionResult AddFilme(Filme filme)
         {
             filmes.Add(filme);
             return Ok(filmes);
