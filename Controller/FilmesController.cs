@@ -33,7 +33,7 @@ namespace Filmes.Controller
             return Ok(filmes.FirstOrDefault(fi => fi.Id == id));
         }
     
-        [HttpPost]
+        [HttpPost("AddFilme")]
         public IActionResult AddFilme(Filme filme)
         {
             filmes.Add(filme);
