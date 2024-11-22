@@ -3,10 +3,33 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    options.IncludeXmlComments(xmlPath);
+
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+
+        Title = "Filmes API",
+        Version = "v1",
+        Description = "Uma API para gerenciar filmes. Inclui endpoints para criar, ler, atualizar e deletar filmes.",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact
+        {
+            Name = "Danilo",
+            Email = "danilo.lacerda77@gmail.com",
+            Url = new Uri("https://github.com/Danillo-L/Filmes")
+        },
+        License = new Microsoft.OpenApi.Models.OpenApiLicense
+        {
+            Name = "MIT",
+            Url = new Uri("https://opensource.org/licenses/MIT")
+        }
+    });
+});
+
 builder.Services.AddControllers();
 
 
@@ -21,7 +44,6 @@ builder.Services.AddDbContext<DataContext>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
